@@ -1,6 +1,7 @@
 # SARS-COV-19-image-classification-using-DenseNet
 ## **Domain Proyek**
 ### **Latar Belakang** 
+<image src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/3670887.jpg'>
 Coronavirus disease merupakan suatu kelompok virus yang dapat 
 menyebabkan penyakit pada hewan dan manusia. Beberapa jenis coronavirus
 diketahui menyebabkan infeksi saluran nafas pada manusia mulai dari batuk pilek 
@@ -9,7 +10,7 @@ Severe Acute Respiratory Syndrome (SARS). Covid-19 merupakan penyakit
 menular yang disebabkan oleh jenis coronavirus yang ditemukan pada akhir 2019
 (World Health Organization, 2020). Covid-19 yang saat ini mewabah secara global 
 di ratusan negara di dunia menjadi salah satu pandemi yang paling banyak menyita 
-perhatian dunia. Di masa pandemi saat ini, secara teknis, teknologi Artificial Intelligence (AI) atau kecerdasan buatan sangatlah dibutuhkan, beberapa dirancang untuk mengidentifikasi pola pergerakan penyebaran virus Covid-19(forecasting). Namun banyak hal lain yang juga dapat dilakukan salah satu diantaranya adalah untuk membantu dalam hal diagnosa, dengan menggunakan perhitungan alogaritma serta melakukan analisa lewat CT Scan.
+perhatian dunia. Di masa pandemi saat ini, secara teknis, teknologi Artificial Intelligence (AI) atau kecerdasan buatan sangatlah dibutuhkan, beberapa dirancang untuk mengidentifikasi pola pergerakan penyebaran virus Covid-19 (forecasting). Namun banyak hal lain yang juga dapat dilakukan salah satu diantaranya adalah untuk membantu dalam hal diagnosa, dengan menggunakan perhitungan alogaritma serta melakukan analisa lewat CT Scan.
 
 ### **Goals**
 Tujuan dibuatnya proyek ini adalah mencoba mengembangkan model deep learning dengan memanfaatkan transfer learning DenseNet untuk pengklasifikasian tiga kelas hasil gambar rontgen dada yang memiliki Covid-19, Viral Pneumonia, atau Normal. Dataset ini tersedia dalam link kaggle berikut ini: `https://www.kaggle.com/datasets/pranavraikokte/covid19-image-dataset/code?datasetId=627146&sortBy=voteCount`

@@ -59,5 +59,13 @@ Sampel dari gambar hasil rontgen: <br>
    
    
    
+# Another insight about DenseNet
+Seperti yang kita ketahui bersama dalam Neural Network sudah sangat banyak  model yang useful baik untuk data tidak terstruktur seperti pada aplikasi pengolahan gambar ataupun bahasa. Dalam aplikasi pengolahan gambar seperti yang sudah dikerjakan tadi contohnya, sebenarnya sangat banyak pendekatan pemecahan masalah yang dapat dilakukan dengan menggunakan model-model lain. Disini saya memanfaatkan model DenseNet, lalu apa itu DenseNet? DenseNet adalah `Densely Connected Convolutional Networks`, dimana disini kita mengenerate sebuah next step dan meningkatkan secara mendalam kompleksitas dari jaringan konvulusi yang dibangun. Jauh sebelum DenseNet, para researcher sudah mengembangkan banyak model CNN seperti LeNet dari Yan Le Cun yang memanfaatkan 5 layer, lalu VGG16 dengan 19 layernya, serta ResNet yang bahkan bisa mencapai 100 layer lebih. Seperti namanya DenseNet yaitu densely (padat) ini memiliki makna bahwa jaringan konvulusi ini terhubung rapat antar layernya, tentunya ini sangat mirip dengan ide dari ResNet untuk arsitektur antar keduanya dapat dilihat seperti pada gambar berikut.
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/ptg.png'>
+ DenseNet ditujukan untuk meningkatkan akurasi dengan melakukan vanishing grad descent pada high level neural network hal ini dikarenakan jarak yang cukup jauh antar lapisan input dan output yang mengakibatkan informasi dapat divanish sebelum sampai ke destinasi, seperti pada gambar diatas. Jadi disaat kita misalkan memiliki sebuah model dengan N layer, akan ada N koneksi pula.Namun di DenseNet jika kita memiliki sebuah lapisan N layer maka akan ada N yang ditambah 1/2 koneksi menjadi N(N+1)/2. Jadi dalam DenseNet, kita akan memiliki jumlah lapisan yang lebih sedikit dibanding model lain, dan tentunya kita dapat melatih lebih dari 100 lapisan model dengan ringan menggunakan teknik ini. 
+ 
+ ## Layers & DenseBlock
+  <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/02.png'>
+   
    
    

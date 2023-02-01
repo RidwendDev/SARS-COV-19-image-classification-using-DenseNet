@@ -33,96 +33,29 @@ Sampel dari gambar hasil rontgen: <br>
 - Langkah keempat ialah melakukan Flattening
 - Berikutnya akan ditambahkan 2 layer dengan dimensi 256 dan memanfaatkan fungsi aktivasi ReLu
 - Disini saya juga menambahkan layer dropout sebesar 0.5, hal ini saya lakukan untuk meregularize yang mana dapat mencegah terjadinya overfitting
-   
-   * Dapat dilihat dari grafik customer yang churn(pindah) dengan tingkat presentase tertinggi adalah yang menggunakan Elektronik check sebagai Metode Pembayaran.
-   * Pelanggan yang memilih mailed check,bank transfer, credit card(automatic) sebagai Metode Pembayaran cenderung tidak pindah.
-   
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/depen.png?raw=true'>
+- Lalu tambahkan layer terakhir dengan dimensi 3 dan fungsi aktivasi softmax untuk melakukan Multiclass
+- Berikutnya akan diberikan loss function Sparse Categorical Crossentropy, dan memberikan optimizer Adaptive Momentum(Adam) serta menggunakan acc sebagai metrics
 
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/partner.png?raw=true'>
-   
-   * Pelanggan yang tidak memiliki dependents(tanggungan) cenderungnya akan churn
-   * Pelanggan yang tidak memiliki partners(pasangan) cenderungnya akan churn
-   
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/monthlykde.png?raw=true'>
-   
-   * Terlihat dari grafik bahwa customer dengan monthly charges yang lebih tinggi akan cenderung lebih churn
-   
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/tenurekde.png?raw=true'>
-   
-   * Terlihat dari grafik bahwa customer dengan tenure yang lebih tinggi akan lebih loyal dan sebaliknya pula customer baru akan cenderung lebih churn
-   
-    
-## **Data Preparation**
-Berikut merupakan tahapan dalam mempersiapkan data untuk keperluan pelatihan model:
-### **Split dataset**
-Membagi dataset menjadi data latih (_train_) dan data uji (_test_) merupakan hal yang harus kita lakukan sebelum membuat model.Data latih adalah sekumpulan data yang akan digunakan oleh model untuk melakukan pelatihan. Sedangkan, data uji adalah sekumpulan data yang akan digunakan untuk memvalidasi kinerja pada model yang telah dilatih. Proporsi pembagian yang saya lakukan pada dataset ini menggunakan proporsi pembagian 80:20 yang berarti sebanyak 80% merupakan data latih dan 20% persen merupakan data uji.
-   
-### **Normalisasi data**
-Melakukan transformasi pada data fitur fitur yang akan dipelajari oleh model menggunakan _library_ _StandardScaler_. _StandardScaler_ mentransformasikan fitur dengan menskalakan setiap fitur ke rentang tertentu. _Library_ ini menskalakan dan mentransformasikan setiap fitur secara individual sehingga berada dalam rentang yang diberikan pada set pelatihan, _StandardScaler()_ akan menormalkan fitur-fitur (setiap kolom X) sehingga setiap kolom/fitur/variabel akan memiliki mean = 0 dan standard deviation = 1. Dengan merenapkan teknik normalisasi data, model akan dengan lebih mudah mengenali pola-pola yang terdapat pada data sehingga akan menghasilkan prediksi yang lebih baik daripada tidak menggunakan teknik normalisasi.
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/ars1.png'>
+- Berikut merupakan gambaran arsitektur yang sudah dibangun
 
-## **Modeling**
-Algoritma _machine learning_ yang digunakan pada proyek ini yaitu _Support Vector Classifier, K-Nearest Neighbours, Random Forest Classifier_.
-### **Support Vector Classifier**
-_Support Vector Classifier_ (SVC)berusaha mencari ‘jalan’ terbesar yang bisa memisahkan sampel-sampel dari kelas berbeda, maka pada kasus regresi SVR berusaha mencari jalan yang dapat menampung sebanyak mungkin sampel di ‘jalan’.
-
-Pada tahap ini model akan melakukan pelatihan terhadap data latih untuk mendapatkan error seminimal mungkin, kemudian setelah pelatihan model melakukan prediksi terhadap data yang belum pernah di lihat sebelumnya menggunakan data uji. Adapun algoritma ini memiliki keunggulan dan kekurangan.
-Keunggulannya seperti SVC efektif pada data berdimensi tinggi (data dengan jumlah fitur atau atribut yang sangat banyak).Adapun kelemahan dari  Support Vector Classifier: Sulit dipakai dalam problem berskala besar. Skala besar dalam hal ini dimaksudkan dengan jumlah sample yang diolah.
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/ars2.png'>
+- Langkah berikutnya adalah membuat sebuah checkpoint dari model dengan memanfaatkan callbacks pada keras dan memberikan parameter-parameter seperti file yang akan disave, mode dan lainnya
+-  Setelah itu saya memanfaatkan early stopping untuk memonitor nilai acc yang dihasilkan saat proses training berlangsung, disini saya memberikan patience sebesar 10
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/callbak.png'>
+-  Didapat Hasil selama 50 epoch adalah sebagai berikut
    
-### **K-Nearest Neighbours**
-K-nearest neighbor adalah salah satu algoritma machine learning dengan pendekatan supervised learning yang bekerja dengan mengkelaskan data baru menggunakan kemiripan antara data baru dengan sejumlah data (k) pada lokasi yang terdekat yang telah tersedia. Algoritma ini menerapkan lazy learning” atau “instant based learning” dan merupakan algoritma non parametrik. Algoritma KNN digunakan untuk klasifikasi dan regresi. Pada pembuatan model ini akan menggunaka modul KNN yang terlah di sediakan oleh library _scikit-learn_ .Pada model ini hanya akan menggunakan 1 parameter yaitu `n_neighbours` (Jumlah tetangga). Jumlah _neighbours_ yang di gunakan yaitu sejumlah 11 neighbours. Kemudian, untuk menentukan titik mana dalam data yang paling mirip dengan input baru, KNN menggunakan perhitungan ukuran jarak. Metrik ukuran jarak yang digunakan secara default pada library sklearn adalah Minkowski distance. Setelah menentukan nilai-nilai pada parameter model melakukan pelatihan menggunakan data latih setelah itu model akan melakukan prediksi terhadap data yang belum pernah dilihat dengan menggunakan data uji. Namun algoritma ini memiliki keunggulan dan kekurangan.
-
-Berikut keunggulan K-Nearest Neighbours:
-
-* Sangat sederhana dan mudah dipahami
-* Sangat mudah diterapkan
-* Dapat digunakan dalam proses klasifikasi maupun regresi.
-* Sangat mudah jika akan dilakukan penambahan data
-* Parameter yang diperlukan sedikit, yaitu hanya jumlah tetangga yang dipertimbangkan (K), dan metode perhitungan jaraknya (distance metrik)
-
-Berikut kelemahan K-Nearest Neighbours:
-
-* Perlu menentukan nilai K yang tepat.
-* Computation cost yang tinggi
-* Waktu pemrosesan yang lama jika datasetnya sangat besar.
-* Tidak cukup bagus jika diterapkan pada high dimensional data
-* Sangat sensitif pada data yang memiliki banyak noise (noisy data), banyak data yang hilang (missing data), dan pencilan (outliers).
-
-### **Random Forest Classifier**
-Algoritma ini merupakan sekumpulan algoritma decision tree. Konsep dasar decision tree adalah mengubah data menjadi aturan-aturan keputusan. Kombinasi dari masing–masing decision tree yang baik kemudian dikombinasikan ke dalam satu model. Random Forest bergantung pada sebuah nilai vector random dengan distribusi yang sama pada semua pohon yang masing masing decision tree memiliki kedalaman yang maksimal. Algoritma ini bisa menyelesaikan permasalahan klasifikasi dan regresi. Pada kasus klasifikasi, prediksi akhir diambil dari prediksi terbanyak pada seluruh pohon. Sedangkan, pada kasus regresi, prediksi akhir adalah rata-rata prediksi seluruh pohon. Untuk pembuatan model Random Forest, akan menggunakan beberapa parameter, antara lain:
-* `n_estimator`: jumlah trees (pohon) di forest. Di sini saya set `n_estimator`=500.
-Setelah itu model akan melakukan pelatihan menggunakan data latih, setelah itu model bisa melakukan prediksi pada data yang belum pernah diliath dengan menggunakan data uji. Namun model ini sama seperti yang lainnya mempunyai plus minusnya.
-   
-Keunggulan Random Forest:
-* Algoritma Random Forest merupakan algoritma dengan pembelajaran paling akurat yang tersedia. Untuk banyak kumpulan data, algoritma ini menghasilkan pengklasifikasi yang sangat akurat.
-* Berjalan secara efisien pada data besar.
-* Memiliki metode yang efektif untuk memperkirakan data yang hilang dan menjaga akurasi ketika sebagian besar data hilang.
-   
-Kelemahan Random Forest:
-* Algoritma Random Forest overfiting untuk beberapa kumpulan data dengan tugas klasifikasi/regresi yang noise.
-
-Pada proyek ini yang menjadi model dengan solusi terbaik adalah _Random Forest Classifier_. Dimana model ini memiliki nilai Akurasi paling tinggi dari kedua model lainnya.
-   
-## **Evaluation**
-Pada proyek machine learning ini, didapatkan model terbaik dengan akurasi diatas 80% adalah Random Forest Classifier
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/model.png?raw=true'>
-   
-Untuk klasifikasi sesudah kita mendapatkan akurasi terbaik kita juga bisa memanfaatkan Confusion matrix
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/cf.png?raw=true'>
-
-Adapun penjelasannya sebagai berikut:
-   * True Positive (TP) : Jumlah data yang bernilai Positif dan diprediksi benar sebagai Positif.
-   * False Positive (FP) : Jumlah data yang bernilai Negatif tetapi diprediksi sebagai Positif.
-   * False Negative (FN) : Jumlah data yang bernilai Positif tetapi diprediksi sebagai Negatif.
-   * True Negative (TN) : Jumlah data yang bernilai Negatif dan diprediksi benar sebagai Negatif.
-   
-Confusion matrix testing model terbaik:<br>
-<img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/ev%20rf.png?raw=true'>
-   <br>Kesimpulan dari evaluasinya:
-   Dari data terlihat bahwasannya model mampu memprediksi data dengan menghasilkan akurasi sebesar 80%, dengan detil tebakan churn yang sebenernya benar churn  adalah 185, tebakan tidak churn yang sebenernya tidak churn adalah 948, tebakan tidak churn yang sebenernya benar churn adalah 189 dan tebakan churn yang sebenernya tidak churn adalah 87.
-   
-## Referensi
-   * Kavitha, V., Kumar, G. H., Kumar, S. M., & Harish, M. (2020). Churn prediction of customer in telecom industry using machine learning algorithms. International Journal of Engineering Research and Technology (IJERT), 9(5), 181–184. https://doi.org/10.17577/ijertv9is050022
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/epoch.png'>
+- Setelah proses training selesai, saya memvisualiasikan plot learning curvenya seperti pada gambar berikut
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/1.png'>
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/2.png'>
+   * Hasil loss dan acc untuk masing-masing train dan val
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/trainval.png'>
+- Proses terakhir yang dilakukan adalah membuat classification report serta memvisualisasikan confusion matrix
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/creport.png'>
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/confmat.png'>
+   <br>Kesimpulan dari hasil evaluasi:
+      Dari data terlihat bahwasannya model yang dibangun ini mampu memprediksi data dengan menghasilkan akurasi sebesar 100%, hasil ini tentunya juga dipengaruhi oleh data yang sedikit juga serta proses iterasi dari epoch yang cukup banyak. Jadi meskipun didapat hasil akurasi yang tinggi, model ini tentunya masih memiliki banyak kekurangan alasannya tentu dari data yang digunakan masih sangat sedikit untuk ditrain dalam Neural Network tingkat industri, hal lain tentunya model ini tidak dapat dijadikan sebagai tolok ukur utama untuk mengidentifikasi penyakit covid-19 dengan citra dada hasil rontgen. Harapannya saya dapat mengembangkan model yang lebih baik dengan skala data yang lebih besar lagi di masa yang akan datang. Baik itu saja yang dapat saya sampaikan pada kesempatan kali ini semoga dapat bermanfaat. Terima kasih 🙏🏻
    
    
    

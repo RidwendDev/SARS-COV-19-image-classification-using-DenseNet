@@ -20,22 +20,19 @@ Tujuan dibuatnya proyek ini adalah mencoba mengembangkan model deep learning den
 Didalam data terdapat 132 gambar yang dibagi menjadi 3 class Covid-19, Viral Pneumonia, atau Normal dimana masing-masing memiliki jumlah sebesar
 - Covid-19 : 52
 - Viral Pneumonia : 40 
-- Normal : 40
-Kita akan mengambil salah satu sampel data numeriknya, di program akan ditampilkan tidak ada nilai yang outlier<br>
+- Normal : 40 <br><br>
+Sampel dari gambar hasil rontgen: <br> 
+<image src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/ct.png'>
+   
 
-<image src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/out.png?raw=true'>
-   
-Karena terdapat nilai missing value pada kolom Total charges kita akan melakukan imputation, untuk itu sebelumnya kita akan lihat distribusi datanya agar dapat memilih metode yang terbaik.<br>
-   
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/hist%20total.png?raw=true'>
-
-Dari grafik  terlihat bahwa distribusi skewness sehingga akan kita lakukan imputation dengan metode median. 
-    
-## Analisis Univariat dan Multivariat
-Baik kita akan mulai fokus menganalisis korelasi data pada feature-feature baik numerik maupun kategorik terhadap target kita(Churn). Untuk lebih lengkapnya dapat dilihat pada kode programnya, karena disini hanya akan menggambarkan sedikit pattern yang cukup menarik.<br>
-   
+## Steps to solve problems
+- So yang pertama akan dilakukan adalah dengan menginisiasikan jumlah height dan width dengan dimensi 224, 224.
+- Berikutnya membangun base model dengan memanfaatkan model pretrain DenseNet, disini weights yang digunakan adalah imagenet. Untuk arsitekturnya seperti berikut ini<br>
    <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/corr%20numer.png?raw=true'>
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/paymet.png?raw=true'>
+- Berikutnya akan didefinisikan sebuah model sequential yang akan menjadi model final untuk DenseNet yang dibangun, setelah ditambahkan pada base model yang saya buat sebelumnya, tambahkan juga layers Average pooling.
+- Langkah keempat ialah melakukan Flattening
+- Berikutnya akan ditambahkan 2 layer dengan dimensi 256 dan memanfaatkan fungsi aktivasi ReLu
+- Disini saya juga menambahkan layer dropout sebesar 0.5, hal ini saya lakukan untuk meregularize yang mana dapat mencegah terjadinya overfitting
    
    * Dapat dilihat dari grafik customer yang churn(pindah) dengan tingkat presentase tertinggi adalah yang menggunakan Elektronik check sebagai Metode Pembayaran.
    * Pelanggan yang memilih mailed check,bank transfer, credit card(automatic) sebagai Metode Pembayaran cenderung tidak pindah.

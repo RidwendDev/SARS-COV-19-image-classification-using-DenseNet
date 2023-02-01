@@ -70,11 +70,13 @@ Seperti yang kita ketahui bersama dalam Neural Network sudah sangat banyak  mode
 feature map tadi. Jadi lapisan transisi memungkinkan Max Pooling, yang biasanya mengarah pada reduksi  ukuran pada feature map kita. Seperti yang terdapat pada gambar, kita dapat melihat dua blok pertama adalah lapisan konvolusi dan yang kedua adalah lapisan Pooling, dan kombinasi keduanya tersebut adalah layer transisi. 
    
  ## Kelebihan DenseNet
-    <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/01.png'>
-   
    * Dapat mempertahankan fitur dengan kompleksitas rendah 
    * Aliran gradien yang kuat <br>
       loss function yang ada dapat dengan mudah disebarkan ke lapisan layer sebelumnya secara langsung, yang mana ini adalah aplikasi dari <i>Implicit deep supervision</i> karena lapisan sebelumnya bisa mendapatkan pengawasan langsung dari lapisan klasifikasi akhir.
-   * Parameter & efisiensi komputasi
-      <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/params.png'>
-      Seperti yang sudah disinggung pada pembahasan sebelumnya, DenseNet memiliki sedikit kemiripan dengan ResNet tetapi dari sini kita dapat lihat, Untuk setiap lapisan, jumlah parameter di ResNet berbanding lurus dengan C × C sedangkan Jumlah parameter di DenseNet berbanding lurus dengan l × k × k . Karena k << C , DenseNet memiliki size yang jauh lebih kecil daripada ResNet .
+   * Parameter & efisiensi komputasi <br>
+      <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/params.png'><br>
+      Seperti yang sudah disinggung pada pembahasan sebelumnya, DenseNet memiliki sedikit kemiripan dengan ResNet tetapi dari sini kita dapat lihat, Untuk setiap lapisan, jumlah parameter di ResNet berbanding lurus dengan C × C sedangkan Jumlah parameter di DenseNet berbanding lurus dengan l × k × k . Karena k << C , DenseNet memiliki size yang jauh lebih kecil daripada ResNet.<br>
+   
+Untuk lebih lengkap bisa dibaca disini:
+   *https://www.analyticsvidhya.com/blog/2022/03/introduction-to-densenets-dense-cnn/
+   *https://towardsdatascience.com/understanding-and-visualizing-densenets-7f688092391a

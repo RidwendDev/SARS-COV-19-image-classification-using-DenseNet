@@ -28,7 +28,7 @@ Sampel dari gambar hasil rontgen: <br>
 ## Steps to solve problems
 - So yang pertama akan dilakukan adalah dengan menginisiasikan jumlah height dan width dengan dimensi 224, 224.
 - Berikutnya membangun base model dengan memanfaatkan model pretrain DenseNet, disini weights yang digunakan adalah imagenet. Untuk arsitekturnya seperti berikut ini<br>
-   <img src='https://github.com/RidwendDev/Customer-Churn-Classification/blob/main/Visualizations/corr%20numer.png?raw=true'>
+   <img src='https://github.com/RidwendDev/SARS-COV-19-image-classification-using-DenseNet/blob/main/image/demse.png'>
 - Berikutnya akan didefinisikan sebuah model sequential yang akan menjadi model final untuk DenseNet yang dibangun, setelah ditambahkan pada base model yang saya buat sebelumnya, tambahkan juga layers Average pooling.
 - Langkah keempat ialah melakukan Flattening
 - Berikutnya akan ditambahkan 2 layer dengan dimensi 256 dan memanfaatkan fungsi aktivasi ReLu

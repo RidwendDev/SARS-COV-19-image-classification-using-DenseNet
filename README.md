@@ -78,5 +78,5 @@ feature map tadi. Jadi lapisan transisi memungkinkan Max Pooling, yang biasanya 
       Seperti yang sudah disinggung pada pembahasan sebelumnya, DenseNet memiliki sedikit kemiripan dengan ResNet tetapi dari sini kita dapat lihat, Untuk setiap lapisan, jumlah parameter di ResNet berbanding lurus dengan C × C sedangkan Jumlah parameter di DenseNet berbanding lurus dengan l × k × k . Karena k << C , DenseNet memiliki size yang jauh lebih kecil daripada ResNet.<br>
    
 Untuk lebih lengkap bisa dibaca disini:
-   *https://www.analyticsvidhya.com/blog/2022/03/introduction-to-densenets-dense-cnn/
-   *https://towardsdatascience.com/understanding-and-visualizing-densenets-7f688092391a
+   * https://www.analyticsvidhya.com/blog/2022/03/introduction-to-densenets-dense-cnn/ <br>
+   * https://towardsdatascience.com/understanding-and-visualizing-densenets-7f688092391a
